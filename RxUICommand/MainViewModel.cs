@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,10 @@ namespace RxUICommand
                 .StartWith(0)
                 .ToProperty(this, x => x.Count);
 
-            DoIt = ReactiveCommand.Create();
+            DoIt = ReactiveCommand.Create(() => { });
         }
 
-        public ReactiveCommand<object> DoIt { get; protected set; }
+        public ReactiveCommand<Unit, Unit> DoIt { get; protected set; }
 
         ObservableAsPropertyHelper<int> count;
         public int Count
